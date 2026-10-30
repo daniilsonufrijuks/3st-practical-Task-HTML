@@ -1,0 +1,545 @@
+/* Daniils Onufrijuks do62022 */
+
+
+/* ==========================================================
+   Google fonts: ielādējam fontus Barlow (teksts) un
+   Barlow Condensed (virsraksti) no Google servera
+   ========================================================== */
+@import url("https://fonts.googleapis.com/css2?family=Barlow:wght@400;500;600&family=Barlow+Condensed:wght@600;700;800&display=swap");
+
+/* ==========================================================
+   Dizaina mainīgie (CSS variables)
+   Krāsas definētas vienuviet, lai tās var viegli mainīt
+   un lietot visā failā ar var(--nosaukums)
+   ========================================================== */
+:root {
+    --ink: #2d280f;          /* tumši brūns: teksts, galvene, kājene */
+    --court: #e0ac1c;        /* zeltaini dzeltens: galvenais akcents */
+    --signal: #ffc83d;       /* gaiši dzeltens: izcēlumi un hover efekti */
+    --ice: #eef2f7;          /* lapas fona krāsa */
+    --paper: #ffffff;        /* kartīšu un paneļu fons */
+    --muted: #54627a;        /* sekundārā (pelēkā) teksta krāsa */
+    --line: #d3dbe6;         /* apmales un atdalītājlīnijas */
+    --radius: 6px;           /* vienots stūru noapaļojums */
+}
+
+/* ==========================================================
+   Pamatstili (elementu selektori)
+   ========================================================== */
+
+/* Visiem elementiem: padding un border ieskaita platumā/augstumā */
+* {
+    box-sizing: border-box;
+}
+
+/* Gluda ritināšana, nospiežot navigācijas saites (#welcome utt.) */
+html {
+    scroll-behavior: smooth;
+}
+
+/* Lapas pamata fonts, teksta izmērs, rindstarpa un krāsas */
+body {
+    margin: 0;
+    font-family: "Barlow", "Segoe UI", Arial, sans-serif;
+    font-size: 1.05rem;
+    line-height: 1.6;
+    color: var(--ink);
+    background-color: var(--ice);
+}
+
+/* Visi virsraksti lieto šaurāko (condensed) fontu */
+h1, h2, h3 {
+    font-family: "Barlow Condensed", "Arial Narrow", Impact, sans-serif;
+    line-height: 1.1;
+    margin: 0 0 0.6rem;
+}
+
+h2 {
+    font-size: 2.4rem;
+    font-weight: 800;
+}
+
+h3 {
+    font-size: 1.5rem;
+    font-weight: 700;
+}
+
+p {
+    margin: 0 0 0.9rem;
+}
+
+/* Attēli nekad nav platāki par savu konteineru */
+img {
+    display: block;
+    max-width: 100%;
+}
+
+/* Galvenais saturs: centrēts un ar maksimālo platumu */
+main {
+    max-width: 1180px;
+    margin: 0 auto;
+    padding: 0 1.5rem 3rem;
+}
+
+/* Lai pēc ritināšanas uz sadaļu to nenosegtu lipīgā galvene */
+section[id],
+#club-banner {
+    scroll-margin-top: 90px;
+}
+
+/* ==========================================================
+   Galvene un navigācija
+   ========================================================== */
+
+/* ID selektors: galvene paliek redzama augšā ritinot (position: sticky) */
+#club-banner {
+    position: sticky;
+    top: 0;
+    z-index: 100;              /* galvene vienmēr virs pārējā satura */
+    display: flex;             /* logotips pa kreisi, izvēlne pa labi */
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;           /* šaurā ekrānā elementi var iet jaunā rindā */
+    padding: 0.8rem 2rem;
+    background-color: var(--ink);
+    color: var(--paper);
+    border-bottom: 4px solid var(--signal);
+}
+
+/* Klubs nosaukums galvenē */
+.brand-block h1 {
+    margin: 0;
+    font-size: 2.2rem;
+    font-weight: 800;
+    letter-spacing: 0.02em;
+    color: var(--paper);
+}
+
+/* Mazais sauklis zem nosaukuma */
+.brand-tagline {
+    margin: 0;
+    font-size: 0.85rem;
+    color: var(--signal);
+    letter-spacing: 0.04em;
+}
+
+/* Navigācijas saraksts: noņemam punktus un atstarpes */
+.club-navigation ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;          /* "satur" float elementus, lai galvene nesakļaujas */
+}
+
+/* Descendant selektors: saraksta punkti novietoti horizontāli ar float */
+.club-navigation ul li {
+    float: left;
+    margin-left: 0.25rem;
+}
+
+/* Navigācijas saites: padding padara tās lielākas un viegli nospiežamas */
+.club-navigation ul li a {
+    display: block;
+    padding: 0.7rem 1.2rem;
+    font-weight: 600;
+    text-decoration: none;
+    color: var(--paper);
+    border-radius: var(--radius);
+    background-color: transparent;
+    transition: background-color 0.2s, color 0.2s;   /* gluda krāsas maiņa */
+}
+
+/* Pseidoklase :hover – fona krāsas maiņa, kad uzvelk peli
+   (:focus-visible dara to pašu tastatūras lietotājiem) */
+.club-navigation ul li a:hover,
+.club-navigation ul li a:focus-visible {
+    background-color: var(--signal);
+    color: var(--ink);
+    outline: none;
+}
+
+/* ==========================================================
+   Ievads un izceltais attēls
+   ========================================================== */
+
+/* Flexbox: teksts un attēls blakus, vertikāli centrēti */
+.intro-panel {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 3rem;
+    padding: 3.5rem 0 3rem;
+}
+
+/* Teksta daļa aizņem pusi vietas, bet ne platāk par 34rem */
+.intro-copy {
+    flex: 1 1 0;
+    max-width: 34rem;
+}
+
+.intro-copy h2 {
+    font-size: 3.6rem;
+    color: var(--court);
+}
+
+.intro-copy p {
+    font-size: 1.2rem;
+    color: var(--muted);
+}
+
+/* position: relative – kļūst par atskaites punktu uzrakstam (label) iekšā */
+.spotlight-frame {
+    position: relative;
+    flex: 1 1 0;
+    overflow: hidden;          /* nogriež to, kas iziet ārpus noapaļotajiem stūriem */
+    border-radius: var(--radius);
+    border-bottom: 6px solid var(--court);
+    box-shadow: 0 14px 30px rgba(15, 27, 45, 0.18);
+}
+
+/* Attēls aizpilda rāmi; object-fit: cover to apgriež, nesaplacinot */
+.spotlight-frame img {
+    width: 100%;
+    height: 380px;
+    object-fit: cover;
+}
+
+/* position: absolute – uzraksts novietots virs attēla apakšā pa kreisi.
+   Tumšs puscaurspīdīgs fons + balts teksts nodrošina labu lasāmību */
+.spotlight-label {
+    position: absolute;
+    left: 0;
+    bottom: 1.5rem;
+    padding: 0.6rem 1.3rem;
+    font-weight: 600;
+    color: var(--paper);
+    background-color: rgba(15, 27, 45, 0.82);
+    border-left: 5px solid var(--signal);
+    opacity: 0.9;
+    transition: opacity 0.3s, background-color 0.3s;
+}
+
+/* Kad uzvelk peli uz visa rāmja, uzraksts kļūst skaidrāks un maina krāsu */
+.spotlight-frame:hover .spotlight-label {
+    opacity: 1;
+    background-color: var(--court);
+}
+
+/* ==========================================================
+   Nodarbību kartītes
+   ========================================================== */
+
+.program-section {
+    padding: 1.5rem 0 3rem;
+}
+
+/* Sadaļas virsraksts un apakšvirsraksts */
+.section-heading {
+    margin-bottom: 1.8rem;
+}
+
+.section-heading h2 {
+    margin-bottom: 0.2rem;
+}
+
+.section-heading p {
+    color: var(--muted);
+    margin: 0;
+}
+
+/* Flexbox režģis: 6 kartītes rindās; flex-wrap ļauj pāriet uz jaunu rindu,
+   justify-content sadala vietu starp kartītēm, align-items vienāda augstuma */
+.program-grid {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: stretch;
+    gap: 1.6rem 0;             /* atstarpe starp rindām (vertikāli) */
+}
+
+/* Viena kartīte: vienāds platums (3 rindā) un minimālais augstums.
+   position: relative vajadzīgs numuram (.workout-symbol) kartītes stūrī */
+.workout-card {
+    position: relative;
+    display: flex;
+    flex-direction: column;    /* attēls, virsraksts, teksts un birka vienā kolonnā */
+    width: 31.5%;
+    min-height: 400px;
+    overflow: hidden;
+    background-color: var(--paper);
+    border: 1px solid var(--line);
+    border-radius: var(--radius);
+    transition: transform 0.25s, box-shadow 0.25s, background-color 0.25s;
+}
+
+/* Hover efekts: kartīte paceļas, parādās ēna un mainās fons */
+.workout-card:hover {
+    transform: translateY(-6px);
+    background-color: #f8faff;
+    box-shadow: 0 16px 28px rgba(43, 89, 255, 0.22);
+}
+
+/* Kartītes attēls: vienāds augstums visām kartītēm */
+.workout-card .class-photo {
+    width: 100%;
+    height: 190px;
+    object-fit: cover;
+}
+
+.workout-card h3 {
+    margin: 1rem 1.2rem 0.4rem;
+}
+
+.workout-card p {
+    margin: 0 1.2rem 0.8rem;
+    color: var(--muted);
+}
+
+/* Kartītes numurs (01–06): position: absolute novieto to augšējā kreisajā stūrī */
+.workout-symbol {
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 1;                /* virs attēla */
+    padding: 0.35rem 0.8rem;
+    font-family: "Barlow Condensed", sans-serif;
+    font-size: 1.4rem;
+    font-weight: 800;
+    color: var(--ink);
+    background-color: var(--signal);
+}
+
+/* Līmeņa birka (All levels u.c.): margin-top: auto piespiež to kartītes apakšai */
+.workout-card .level-tag {
+    align-self: flex-start;    /* birka nestiepjas pa visu platumu */
+    margin: auto 1.2rem 1.2rem;
+    padding: 0.2rem 0.8rem;
+    font-size: 0.9rem;
+    font-weight: 600;
+    color: var(--court);
+    border: 2px solid var(--court);
+    border-radius: 50px;       /* tabletes forma */
+}
+
+/* ==========================================================
+   Nodarbību saraksts un dalības informācija
+   ========================================================== */
+
+/* Flexbox: saraksta tabula un dalības panelis blakus */
+.club-details {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 2rem;
+    padding-bottom: 3rem;
+}
+
+/* Tabulas panelis aizņem 2 daļas no platuma (panelis labajā pusē – 1 daļu) */
+.schedule-panel {
+    flex: 2 1 0;
+    padding: 2rem;
+    background-color: var(--paper);
+    border: 1px solid var(--line);
+    border-radius: var(--radius);
+}
+
+.schedule-panel > p {
+    color: var(--muted);
+}
+
+/* Tabula pa visu platumu; border-collapse apvieno šūnu apmales */
+.schedule-panel table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 1rem;
+}
+
+/* Šūnu iekšējās atstarpes, lai saturs būtu viegli lasāms */
+.schedule-panel th,
+.schedule-panel td {
+    padding: 0.85rem 1rem;
+    text-align: left;
+}
+
+/* Tabulas galvene: tumšs fons, balts teksts */
+.schedule-panel thead th {
+    font-weight: 600;
+    color: var(--paper);
+    background-color: var(--ink);
+}
+
+/* Katras rindas apakšā smalka līnija */
+.schedule-panel tbody tr {
+    border-bottom: 1px solid var(--line);
+}
+
+/* Pseidoklase :nth-child(even) – katra otrā rinda iekrāsota (svītrojums) */
+.schedule-panel tbody tr:nth-child(even) {
+    background-color: var(--ice);
+}
+
+/* Rinda tiek izcelta, kad uzvelk peli */
+.schedule-panel tbody tr:hover {
+    background-color: #fff3cf;
+}
+
+/* Pirmā kolonna (nedēļas diena) treknāka */
+.schedule-panel td:first-child {
+    font-weight: 600;
+}
+
+/* Dalības panelis: flex ar flex-direction: column – bloki sakārtoti vertikāli */
+.member-panel {
+    flex: 1 1 0;
+    display: flex;
+    flex-direction: column;
+    gap: 1.1rem;               /* atstarpe starp .member-note blokiem */
+}
+
+.member-panel > h2 {
+    margin-bottom: 0;
+}
+
+/* Viens informācijas bloks ar krāsainu kreiso joslu */
+.member-note {
+    padding: 1.2rem 1.4rem;
+    background-color: var(--paper);
+    border: 1px solid var(--line);
+    border-left: 6px solid var(--court);
+    border-radius: var(--radius);
+}
+
+.member-note h3 {
+    margin-bottom: 0.3rem;
+    color: var(--court);
+}
+
+.member-note p {
+    margin: 0;
+    color: var(--muted);
+}
+
+/* ==========================================================
+   Motivācijas josla (krāsains bloks pirms kājenes)
+   ========================================================== */
+.motivation-strip {
+    padding: 3.5rem 2rem;
+    text-align: center;
+    color: var(--paper);
+    background-color: var(--court);
+    border-radius: var(--radius);
+}
+
+.motivation-strip h2 {
+    font-size: 3rem;
+}
+
+.motivation-strip p {
+    margin: 0;
+    font-size: 1.2rem;
+}
+
+/* ==========================================================
+   Kājene
+   ========================================================== */
+
+/* Flexbox: divas sadaļas blakus, space-between tās atvirza uz malām,
+   align-items: center izlīdzina tās vertikāli */
+.club-footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 1.5rem;
+    padding: 2.5rem 2rem;
+    color: var(--paper);
+    background-color: var(--ink);
+    border-top: 4px solid var(--signal);
+}
+
+.footer-identity h2 {
+    margin-bottom: 0.2rem;
+    font-size: 1.9rem;
+}
+
+.footer-identity p {
+    margin: 0;
+    color: #b6c2d6;
+}
+
+.footer-links h3 {
+    color: var(--signal);
+}
+
+/* Saites kājenē: bez punktiem un atkāpēm */
+.footer-links ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+.footer-links li {
+    margin-bottom: 0.25rem;
+}
+
+.footer-links a {
+    color: var(--paper);
+    text-decoration: none;
+}
+
+/* Saites hover efekts: dzeltena krāsa un pasvītrojums */
+.footer-links a:hover,
+.footer-links a:focus-visible {
+    color: var(--signal);
+    text-decoration: underline;
+}
+
+/* ==========================================================
+   Adaptīvais dizains (media queries)
+   ========================================================== */
+
+/* Planšetes (līdz 960px): 2 kartītes rindā, ievads un tabula zem vienas otras */
+@media (max-width: 960px) {
+    .workout-card {
+        width: 48.5%;
+    }
+
+    .intro-panel,
+    .club-details {
+        flex-direction: column;
+        align-items: stretch;
+    }
+
+    .intro-copy {
+        max-width: none;
+    }
+}
+
+/* Telefoni (līdz 640px): 1 kartīte rindā, kompaktāka navigācija */
+@media (max-width: 640px) {
+    #club-banner {
+        padding: 0.6rem 1rem;
+    }
+
+    .club-navigation ul li {
+        margin: 0;
+    }
+
+    .club-navigation ul li a {
+        padding: 0.5rem 0.7rem;
+    }
+
+    .workout-card {
+        width: 100%;
+    }
+
+    .intro-copy h2 {
+        font-size: 2.6rem;
+    }
+
+    /* Tabulu var ritināt sāniski, ja tā netilpst */
+    .schedule-panel {
+        padding: 1rem;
+        overflow-x: auto;
+    }
+}
