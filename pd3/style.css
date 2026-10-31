@@ -32,11 +32,13 @@
 
 /* Visiem elementiem padding un border tiek ieskaitīts platumā */
 * {
+    /* box sizing ir nepieciešams, lai izvairītos no izmēru problēmām */
     box-sizing: border-box;
 }
 
 /* Gluda ritināšana uz sadaļām, nospiežot navigācijas saites */
 html {
+    /* scroll behavior ir nepieciešams, lai izveidotu gludu ritināšanu */
     scroll-behavior: smooth;
 }
 
@@ -52,12 +54,14 @@ body {
     background-color: #5a9bd8;
     background-image: linear-gradient(to bottom, #3b82d6 0%, #8fc3f0 55%,
                                       #8fc3f0 60%, #5da83a 60%, #3f8a24 100%);
+        /* background attachment ir nepieciešams, lai fons būtu fiksēts */
     background-attachment: fixed;
 }
 
 /* Virsraksti: Trebuchet MS kā XP logu virsrakstiem */
 h1, h2, h3 {
     font-family: "Trebuchet MS", Tahoma, sans-serif;
+    /* line height ir nepieciešams, lai izveidotu labu teksta lasāmību */
     line-height: 1.2;
     margin: 0 0 0.6rem;
 }
@@ -94,8 +98,10 @@ main {
 
 /* Atribūtu selektors section[id]: sekcijām ar id.
    scroll-margin-top atstāj vietu lipīgajai galvenei */
+   /* [id] ir atribūts, kas identificē sekcijas */
 section[id],
 #club-banner {
+    /* scroll margin top atstāj vietu lipīgajai galvenei */
     scroll-margin-top: 90px;
 }
 
@@ -140,10 +146,12 @@ section[id],
 
 /* Navigācijas saraksts: noņemam punktus un atstarpes */
 .club-navigation ul {
+    /* list-style: none; ir nepieciešams, lai noņemtu saraksta punktus */
     list-style: none;
     margin: 0;
     padding: 0;
-    overflow: hidden;          /* "satur" float elementus */
+    /* overflow: hidden; ir nepieciešams, lai butu float elementi */
+    overflow: hidden;  
 }
 
 /* Descendant selektors: saraksta punkti novietoti horizontāli ar float */
@@ -155,9 +163,11 @@ section[id],
 /* Navigācijas saites izskatās kā XP pogas:
    bēšs fons, tumši zila apmale, mazi noapaļoti stūri */
 .club-navigation ul li a {
+    /* display: block; ir nepieciešams, lai saite aizpildītu visu rindu */
     display: block;
     padding: 0.4rem 1.1rem;
     font-weight: 700;
+    /* text-decoration: none; ir nepieciešams, lai noņemtu saraksta punktus */
     text-decoration: none;
     color: var(--ink);
     background-color: var(--ice);
@@ -170,6 +180,7 @@ section[id],
    iekšējā apmale 
    :focus-visible – tas pats tastatūras lietotājiem */
 .club-navigation ul li a:hover,
+/* focus visible ir atribūts, kas identificē fokusu tastatūras lietotājiem */
 .club-navigation ul li a:focus-visible {
     background-color: #fff4c8;
     box-shadow: inset 0 0 0 2px var(--signal);
@@ -185,6 +196,7 @@ section[id],
 .intro-panel {
     display: flex;
     align-items: center;
+    /* justify-content: space-between; ir nepieciešams, lai izvietotu elementus vienmērīgi */
     justify-content: space-between;
     gap: 2.5rem;
     margin-top: 2rem;
@@ -231,11 +243,12 @@ section[id],
     object-fit: cover;
 }
 
-/* position: absolute – uzraksts virs attēla apakšā pa kreisi.
-   Izskats: XP tooltip (gaiši dzeltens fons, melns teksts un apmale).
-   Dzeltenais fons + melns teksts nodrošina labu kontrastu */
+/* position: absolute – uzraksts virs attēla apakšā pa kreisi
+   Izskats: XP tooltip (gaiši dzeltens fons, melns teksts un apmale)
+   Dzeltenais fons + melns teksts */
 .spotlight-label {
     position: absolute;
+    /* left ir nepieciešams, lai izvietotu uzrakstu pa kreisi */
     left: 10px;
     bottom: 10px;
     padding: 0.35rem 0.8rem;
@@ -250,6 +263,7 @@ section[id],
 /* Hover uz rāmja: uzraksts kļūst pilnīgi nepārredzams un maina krāsu
    uz XP atlases zilo ar baltu tekstu */
 .spotlight-frame:hover .spotlight-label {
+    /* opacity ir nepieciešams, lai izveidotu mīkstu efektu */
     opacity: 1;
     background-color: var(--select);
     color: var(--paper);
@@ -283,34 +297,39 @@ section[id],
 }
 
 /* Flexbox režģis: flex-wrap – jauna rinda, kad vietas nepietiek;
-   justify-content – brīvā vieta starp kartītēm;
+   justify-content – brīvā vieta starp kartītēm
    align-items: stretch – vienādi augstas kartītes rindā */
 .program-grid {
     display: flex;
     flex-wrap: wrap;
     justify-content: space-between;
+    /* align-items: stretch; ir nepieciešams, lai kartītes būtu vienādas augstas */
     align-items: stretch;
     gap: 1.6rem 0;
 }
 
-/* Kartīte = XP logs: bēšs fons, zila apmale, augšā noapaļoti stūri.
-   position: relative vajadzīgs virsrakstu joslai (.workout-symbol) */
+/* Kartīte = XP logs
+   position: relative vajadzīgs virsrakstu joslai */
 .workout-card {
     position: relative;
     display: flex;
     flex-direction: column;
     width: 31.5%;
     min-height: 400px;
+    /* overflow ir nepieciešams, lai novērstu saturu, kas iziet ārā no kartītes */
     overflow: hidden;
     background-color: var(--ice);
     border: 3px solid var(--court);
     border-radius: 8px 8px 0 0;
+    /* box shadow ir nepieciešams, lai izveidotu ēnu */
     box-shadow: 3px 4px 10px rgba(0, 0, 0, 0.4);
+    /* transition ir nepieciešams, lai izveidotu mīkstus efektus */
     transition: transform 0.25s, box-shadow 0.25s, background-color 0.25s;
 }
 
 /* Hover: logs paceļas, ēna kļūst lielāka, fons nedaudz gaišāks */
 .workout-card:hover {
+    /* transform ir nepieciešams, lai izveidotu mīkstu efektu */
     transform: translateY(-5px);
     background-color: #f7f6ee;
     box-shadow: 6px 10px 18px rgba(0, 0, 0, 0.5);
@@ -318,11 +337,15 @@ section[id],
 
 /* Attēls ar atkāpi no augšas (zem virsrakstu joslas) un ievilktu apmali */
 .workout-card .class-photo {
+    /* width ir nepieciešams, lai attēls aizpildītu vietu */
     width: auto;
     height: 180px;
+    /* margin ir nepieciešams, lai attēls būtu atkāpts no virsraksta */
     margin: 38px 10px 0;
+    /* object fit ir nepieciešams, lai attēls aizpildītu vietu bez deformācijas */
     object-fit: cover;
     border: 2px solid var(--line);
+    /* border colors ir nepieciešami, lai izveidotu ievilktu apmali */
     border-right-color: var(--paper);
     border-bottom-color: var(--paper);
 }
@@ -347,6 +370,7 @@ section[id],
     top: 0;
     left: 0;
     right: 0;
+    /* z-index ir nepieciešams, lai josla būtu virs citiem elementiem */
     z-index: 1;
     padding: 0.35rem 0.8rem;
     font-family: "Trebuchet MS", Tahoma, sans-serif;
@@ -359,6 +383,7 @@ section[id],
 
 /* Sarkanā aizvēršanas poga virsrakstu joslas labajā pusē */
 .workout-symbol::after {
+    /* content ir nepieciešams, lai izveidotu sarkanās aizvēršanas pogas simbolu */
     content: "\00d7";                 /* reizināšanas zīme × */
     position: absolute;
     right: 5px;
@@ -378,8 +403,11 @@ section[id],
 /* Līmeņa birka: margin-top: auto piespiež to kartītes apakšai.
    Izskats: XP poga */
 .workout-card .level-tag {
+    /* flex-start ir nepieciešams, lai birka būtu novietota sākumā */
     align-self: flex-start;
+    /* margin ir nepieciešams, lai birka būtu novietota pareizi */
     margin: auto 1rem 1rem;
+    /* padding ir nepieciešams, lai birka būtu labi izskatās */
     padding: 0.2rem 1rem;
     font-size: 0.85rem;
     font-weight: 700;
@@ -399,6 +427,7 @@ section[id],
     display: flex;
     justify-content: space-between;
     align-items: flex-start;
+    /* gap ir nepieciešams, lai būtu atstarpes starp elementiem */
     gap: 2rem;
     padding-bottom: 3rem;
 }
@@ -416,6 +445,7 @@ section[id],
 /* Virsraksts kļūst par XP virsrakstu joslu loga augšā.
    Negatīvas malas (margin) izstiepj to līdz loga malām */
 .schedule-panel h2 {
+    /* margin un padding ir nepieciešami, lai virsraksts būtu pareizi novietots */
     margin: -1.5rem -1.5rem 1rem;
     padding: 0.4rem 0.8rem;
     font-size: 1.1rem;
@@ -477,6 +507,7 @@ section[id],
 /* Dalības panelis: flex + flex-direction: column –
    bloki sakārtoti vertikāli */
 .member-panel {
+    /* flex ir nepieciešams, lai bloki būtu pareizi novietoti */
     flex: 1 1 0;
     display: flex;
     flex-direction: column;
@@ -554,10 +585,12 @@ section[id],
     display: flex;
     justify-content: space-between;
     align-items: center;
+    /* flex-wrap ir nepieciešams, lai bloki pielāgotu izmēru mazākās ekrāna izmērus */
     flex-wrap: wrap;
     gap: 1.5rem;
     padding: 1.2rem 1.5rem;
     color: var(--paper);
+    /* linear gradient  ir nepieciešams, lai izveidotu zila XP uzdevumjoslas izskatu */
     background: linear-gradient(to bottom, #3168d5 0%, #4993e6 8%, #2157d7 40%,
                                 #245edb 88%, #1941a5 100%);
     border-top: 3px solid #5a8de4;
@@ -566,6 +599,7 @@ section[id],
 /* Kluba nosaukums kājenē izskatās kā zaļā XP "Start" poga:
    zaļš gradients, noapaļoti labie stūri, trekns slīpraksts */
 .footer-identity h2 {
+    /* display ir nepieciešams, lai elements būtu iekļauts rindā */
     display: inline-block;
     margin-bottom: 0.4rem;
     padding: 0.3rem 1.5rem 0.3rem 1rem;
