@@ -228,7 +228,9 @@ section[id],
 /* position: relative – atskaites punkts uzrakstam (label) iekšā.
    Attēlam ir XP "ievilkta" (inset) apmale */
 .spotlight-frame {
+    /* position: relative; ir nepieciešams, lai uzraksts būtu iekšā */
     position: relative;
+    /* flex: 1 1 0; ir nepieciešams, lai attēls aizpildītu pieejamo vietu */
     flex: 1 1 0;
     overflow: hidden;
     border: 2px solid var(--line);
